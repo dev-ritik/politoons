@@ -25,15 +25,18 @@ env_config = Config(RepositoryEnv('.env'))
 SECRET_KEY = '0^8#mjglymz4%xdf_8+epcywwj*25yc$13e_(9%fv*6wbbs2fo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
+# ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com', '*']
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'whitenoise.runserver_nostatic',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
