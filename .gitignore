@@ -3,7 +3,6 @@ env
 venv
 *.pyo
 *.pyc
-/staticfiles
 .idea
 data.json
 # Elastic Beanstalk Files
