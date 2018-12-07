@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 from decouple import Config, RepositoryEnv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,14 +23,12 @@ env_config = Config(RepositoryEnv('.env'))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0^8#mjglymz4%xdf_8+epcywwj*25yc$13e_(9%fv*6wbbs2fo'
+SECRET_KEY = env_config.get('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
-ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com', '*']
+ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
@@ -109,7 +108,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/myapp/static/'
 
-STATIC_URL = '/static/'
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'myapp/static'),
+)
+django_heroku.settings(locals())
