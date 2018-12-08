@@ -14,10 +14,11 @@ import os
 import dj_database_url
 import django_heroku
 from decouple import Config, RepositoryEnv
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env_config = Config(RepositoryEnv('.env'))
+# env_config = Config(RepositoryEnv('.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -73,9 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'politoons.wsgi.application'
 
-print(env_config.get('DATABASE_URL'))
+# print(env_config.get('DATABASE_URL'))
 
-DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
+# DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
+DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_KEY', 'Optional default value'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
