@@ -1,0 +1,30 @@
+<!--credits: https://codepen.io/arkev/pen/EDeuG-->
+{% load static %}
+<html>
+<head><title>This is title</title>
+    <link href="{% static 'css/tools.css' %}" rel="stylesheet">
+</head>
+<body>
+<div id="pricing-table" class="clear">
+    {% for politoon in all_toons %}
+    <div class="plan">
+        <h3>{{ politoon.name }}<img src="{{ politoon.imageUrl }}"
+                                    alt="{{ politoon.name }} (File photo)"
+                                    title="{{ politoon.name }} (File photo)"></h3>
+        <a class="signup" href="{{ politoon.name }}">Go</a>
+        <ul>
+            <li><b>DOB</b> {{ politoon.dob }}</li>
+            <li><b>Age</b> {{ politoon.get_age }}</li>
+            <li><b>Place of birth</b> {{ politoon.placeOfBirth }}</li>
+            <li><b>Area of Influence</b> {{ politoon.area }}</li>
+            <li><b>Party</b> {{ politoon.party }}</li>
+            <li><b>Major Role</b> {{ politoon.majorRole }}</li>
+            <li><b>Date created</b> {{ politoon.date }}</li>
+        </ul>
+    </div>
+
+    {% endfor %}
+</div>
+</div>
+</body>
+</html>

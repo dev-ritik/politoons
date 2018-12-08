@@ -1,0 +1,33 @@
+<!--credits: https://jsfiddle.net/W74Z8/504/-->
+{% load static %}
+<html>
+<head><title>This is title</title>
+    <!--<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>-->
+    <link href="{% static 'css/detail.css' %}" rel="stylesheet">
+    <style>
+<!--html,body,h1,h2 {font-family: "Roboto", sans-serif}-->
+
+</style>
+</head>
+<body>
+
+<div class="clearfix float-my-children">
+    <img src="{{detail.imageUrl}}"
+         alt="{{ detail.name }}"
+         title="{{ detail.name }}" width=300>
+    <div class="float-my-details">
+
+        <p><strong>{{ detail.name }}</strong></p>
+         <ul>
+            <li><b>DOB</b> {{ detail.dob }}</li>
+            <li><b>Age</b> {{ detail.get_age }}</li>
+            <li><b>Place of birth</b> {{ detail.placeOfBirth }}</li>
+            <li><b>Area of Influence</b> {{ detail.area }}</li>
+            <li><b>Party</b> {{ detail.party }}</li>
+            <li><b>Major Role</b> {{ detail.majorRole }}</li>
+            <li><b>Date created</b> {{ detail.date }}</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
