@@ -18,16 +18,16 @@ import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env_config = Config(RepositoryEnv('.env'))
+# env_config = Config(RepositoryEnv('.env'))
 
-SECRET_KEY = env_config.get('SECRET')
-# SECRET_KEY = os.getenv('SECRET', 'Optional default value')
-#
-# DEBUG = False
-DEBUG = True
-#
-ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
-# ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com', '*']
+# SECRET_KEY = env_config.get('SECRET')
+SECRET_KEY = os.getenv('SECRET', 'Optional default value')
+
+DEBUG = False
+# DEBUG = True
+
+# ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ["localhost", '127.0.0.1', '.herokuapp.com', '*']
 
 # Application definition
 
@@ -74,8 +74,8 @@ WSGI_APPLICATION = 'politoons.wsgi.application'
 
 # print(env_config.get('DATABASE_URL'))
 
-DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
-# DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_KEY', 'Optional default value'))}
+# DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
+DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_KEY', 'Optional default value'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
