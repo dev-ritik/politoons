@@ -8,3 +8,4 @@ data.json
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 /reports
+*.dump
