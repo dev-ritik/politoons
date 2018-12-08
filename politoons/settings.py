@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 from decouple import Config, RepositoryEnv
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env_config = Config(RepositoryEnv('.env'))
+# env_config = Config(RepositoryEnv('.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -74,9 +75,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'politoons.wsgi.application'
 
-print(env_config.get('DATABASE_URL'))
+# print(env_config.get('DATABASE_URL'))
 
-DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
+# DATABASES = {'default': dj_database_url.config(default=env_config.get('DATABASE_URL'))}
+DATABASES = {'default': dj_database_url.config(default=os.getenv('DATABASE_KEY', 'Optional default value'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -112,4 +114,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/myapp/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'myapp/static'),
+)
+django_heroku.settings(locals())
