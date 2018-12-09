@@ -1,5 +1,5 @@
 # politoons
-Simple Django Web app and REST Framework
+Simple Django Web app and REST Framework API
 
 This Django project is purposely made to understand
 * Hosting a web application (here Heroku).
